@@ -1,11 +1,9 @@
 import express from "express";
 
-const server = express();
+const app = express();
 
-const test = "asd";
+app.get("/", (request, response) => response.json({ message: "HIIHIHIHIHI" }));
 
-server.get("/", (request, response) =>
-  response.json({ message: "HIIHIHIHIHI" })
-);
-
-server.listen(3333);
+app.listen(3333, () => {
+  console.log("Server is running");
+});
