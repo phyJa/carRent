@@ -1,4 +1,5 @@
 import { CategoryRepository } from "../repositories/CategoryRepository";
+import { ICategoryRepository } from "../repositories/ICategoryRepository";
 
 interface IRequest {
   name: string;
@@ -6,12 +7,12 @@ interface IRequest {
 }
 
 class CreateCategoryService {
-  private categoriesRepository: CategoryRepository;
+  private categoriesRepository: ICategoryRepository;
 
   // You could do this too:
   // constructor(private categoriesRepository: CategoriesRepository){}
   // and remove the private declaration line
-  constructor(categoriesRepository: CategoryRepository) {
+  constructor(categoriesRepository: ICategoryRepository) {
     this.categoriesRepository = categoriesRepository;
   }
 
