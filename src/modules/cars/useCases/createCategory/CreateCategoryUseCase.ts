@@ -1,17 +1,17 @@
-import { ICategoryRepository } from "../repositories/ICategoryRepository";
+import { ICategoriesRepository } from "../../repositories/ICategoriesRepository";
 
 interface IRequest {
   name: string;
   description: string;
 }
 
-class CreateCategoryService {
-  private categoriesRepository: ICategoryRepository;
+class CreateCategoryUseCase {
+  private categoriesRepository: ICategoriesRepository;
 
   // You could do this too:
   // constructor(private categoriesRepository: CategoriesRepository){}
   // and remove the private declaration line
-  constructor(categoriesRepository: ICategoryRepository) {
+  constructor(categoriesRepository: ICategoriesRepository) {
     this.categoriesRepository = categoriesRepository;
   }
 
@@ -26,4 +26,4 @@ class CreateCategoryService {
   }
 }
 
-export { CreateCategoryService };
+export { CreateCategoryUseCase };
