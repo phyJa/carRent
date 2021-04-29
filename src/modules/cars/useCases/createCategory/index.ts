@@ -9,7 +9,7 @@ import { CreateCategoryUseCase } from "./CreateCategoryUseCase";
  * then use it in the use case and finally use the use case in
  * the controller
  * */
-const categoriesRepository = new CategoriesRepository();
+const categoriesRepository = CategoriesRepository.getInstance();
 
 const createCategoryUseCase = new CreateCategoryUseCase(categoriesRepository);
 

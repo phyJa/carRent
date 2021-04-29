@@ -9,10 +9,21 @@ interface ICreateCategoryDTO {
 class CategoriesRepository implements ICategoriesRepository {
   // Properties
   private categories: Category[];
+
+  private static INSTANCE: CategoriesRepository;
+
   // Methods
-  constructor() {
+  private constructor() {
     this.categories = [];
   }
+
+  public static getInstance(): CategoriesRepository {
+    if (!CategoriesRepository.INSTANCE) {
+      CategoriesRepository.INSTANCE = new CategoriesRepository();
+    }
+    return CategoriesRepository.INSTANCE;
+  }
+
   create({ name, description }: ICreateCategoryDTO): void {
     const category = new Category();
     // Use Object.assign to avoid repetition
