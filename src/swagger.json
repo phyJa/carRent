@@ -1,0 +1,11 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Rent a Car! Documentation",
+        "description": "A description for the documentation",
+        "version": "1.0.0",
+        "contact": {
+            "email": "james@test.com"
+        }
+    }
+}
