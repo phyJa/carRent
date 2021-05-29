@@ -2,19 +2,21 @@ import { CategoriesRepository } from "../../repositories/implementations/Categor
 import { CreateCategoryController } from "./CreateCategoryController";
 import { CreateCategoryUseCase } from "./CreateCategoryUseCase";
 
-/**
- * The routes call the controller. Then the controller needs
- * an object of the UseCase. Further, the use case needs the
- * repository. So we first create our instance of the repository,
- * then use it in the use case and finally use the use case in
- * the controller
- * */
-const categoriesRepository = CategoriesRepository.getInstance();
+export default (): CreateCategoryController => {
+  /**
+   * The routes call the controller. Then the controller needs
+   * an object of the UseCase. Further, the use case needs the
+   * repository. So we first create our instance of the repository,
+   * then use it in the use case and finally use the use case in
+   * the controller
+   * */
+  const categoriesRepository = new CategoriesRepository();
 
-const createCategoryUseCase = new CreateCategoryUseCase(categoriesRepository);
+  const createCategoryUseCase = new CreateCategoryUseCase(categoriesRepository);
 
-const createCategoryController = new CreateCategoryController(
-  createCategoryUseCase
-);
+  const createCategoryController = new CreateCategoryController(
+    createCategoryUseCase
+  );
 
-export { createCategoryController };
+  return createCategoryController;
+};

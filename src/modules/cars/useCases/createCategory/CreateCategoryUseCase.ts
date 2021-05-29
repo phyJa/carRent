@@ -15,8 +15,8 @@ class CreateCategoryUseCase {
     this.categoriesRepository = categoriesRepository;
   }
 
-  execute({ name, description }: IRequest): void {
-    const verifyIfThereIsACategoryWithThePassedName = this.categoriesRepository.findByName(
+  async execute({ name, description }: IRequest): Promise<void> {
+    const verifyIfThereIsACategoryWithThePassedName = await this.categoriesRepository.findByName(
       name
     );
     if (verifyIfThereIsACategoryWithThePassedName) {
