@@ -1,3 +1,5 @@
+import { inject, injectable } from "tsyringe";
+
 import { ICategoriesRepository } from "../../repositories/ICategoriesRepository";
 
 interface IRequest {
@@ -5,18 +7,15 @@ interface IRequest {
   description: string;
 }
 
+@injectable()
 class CreateCategoryUseCase {
-  private categoriesRepository: ICategoriesRepository;
+  constructor(
+    @inject("CategoriesRepository")
+    private categoriesRepository: ICategoriesRepository
+  ) {}
 
-  // You could do this too:
-  // constructor(private categoriesRepository: CategoriesRepository){}
-  // and remove the private declaration line
-  constructor(categoriesRepository: ICategoriesRepository) {
-    this.categoriesRepository = categoriesRepository;
-  }
-
-  execute({ name, description }: IRequest): void {
-    const verifyIfThereIsACategoryWithThePassedName = this.categoriesRepository.findByName(
+  async execute({ name, description }: IRequest): Promise<void> {
+    const verifyIfThereIsACategoryWithThePassedName = await this.categoriesRepository.findByName(
       name
     );
     if (verifyIfThereIsACategoryWithThePassedName) {
